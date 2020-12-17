@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using RentAServ.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,5 +13,6 @@ namespace RentAServ.DataAccess.Data
             : base(options)
         {
         }
+        public DbSet<Category> Category { get; set; }
     }
 }
