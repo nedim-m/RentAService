@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using RentAServ.DataAccess.Data.Repository.IRepository;
 using RentAServ.Models;
 using System;
@@ -12,10 +13,12 @@ namespace RentAServ.Areas.Admin.Controllers
     public class FrequencyController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ILogger<FrequencyController> _logger;
 
-        public FrequencyController(IUnitOfWork unitOfWork)
+        public FrequencyController(ILogger<FrequencyController> logger,IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            _logger = logger;
         }
 
         public IActionResult Index()

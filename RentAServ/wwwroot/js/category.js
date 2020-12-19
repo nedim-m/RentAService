@@ -69,6 +69,3 @@ function Delete(url) {
             });
     });
 }
-function ShowMessage(msg) {
-    toastr.success(msg);
-}

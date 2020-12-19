@@ -28,11 +28,13 @@ namespace RentAServ.Models
         public string ImageUrl { get; set; }
 
         [Required]
+        [DisplayName("Category")]
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }
 
         [Required]
+        [DisplayName("Frequency")]
         public int FrequencyId { get; set; }
 
         public Frequency Frequency { get; set; }

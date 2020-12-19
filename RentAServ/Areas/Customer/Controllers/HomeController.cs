@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using RentAServ.DataAccess.Data.Repository.IRepository;
 using RentAServ.Models;
+using RentAServ.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,15 +15,24 @@ namespace RentAServ.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private HomeVM homeVM;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            return View();
+            homeVM = new HomeVM()
+            {
+                CategoryList = _unitOfWork.Category.GetAll(),
+                ServiceList = _unitOfWork.Service.GetAll(includeProperties:"Frequency")
+            };
+            return View(homeVM);
         }
 
         public IActionResult Privacy()

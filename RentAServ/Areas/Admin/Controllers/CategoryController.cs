@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using RentAServ.DataAccess.Data.Repository.IRepository;
 using RentAServ.Models;
 using System;
@@ -11,11 +12,13 @@ namespace RentAServ.Areas.Admin.Controllers
     [Area("Admin")]
     public class CategoryController : Controller
     {
+        private readonly ILogger<CategoryController> _logger;
         private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryController(IUnitOfWork unitOfWork)
+        public CategoryController(ILogger<CategoryController> logger, IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            _logger = logger;
         }
 
         public IActionResult Index()
