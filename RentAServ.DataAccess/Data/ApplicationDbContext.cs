@@ -16,5 +16,7 @@ namespace RentAServ.DataAccess.Data
         public DbSet<Category> Category { get; set; }
         public DbSet<Frequency> Frequency { get; set; }
         public DbSet<Service> Service { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<OrderHeader> OrderHeader { get; set; }
     }
 }
