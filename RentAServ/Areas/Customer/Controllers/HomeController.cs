@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RentAServ.DataAccess.Data.Repository.IRepository;
+using RentAServ.Extensions;
 using RentAServ.Models;
 using RentAServ.Models.ViewModels;
+using RentAServ.Utility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,6 +37,35 @@ namespace RentAServ.Controllers
             };
             return View(homeVM);
         }
+
+        public IActionResult Details(int id)
+        {
+            var objFromDb = _unitOfWork.Service.GetFirstOrDefault(includeProperties:"Category,Frequency",filter:c=>c.Id==id);
+           
+            return View(objFromDb);
+        }
+
+
+        public IActionResult AddToCart(int Id)
+        {
+            List<int> sessionList = new List<int>();
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(SD.SessionCart)))
+            {
+                sessionList.Add(Id);
+                HttpContext.Session.SetObject(SD.SessionCart, sessionList);
+            }
+            else
+            {
+                sessionList = HttpContext.Session.GetObject<List<int>>(SD.SessionCart);
+                if (!sessionList.Contains(Id))
+                {
+                    sessionList.Add(Id);
+                    HttpContext.Session.SetObject(SD.SessionCart, sessionList);
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
 
         public IActionResult Privacy()
         {
