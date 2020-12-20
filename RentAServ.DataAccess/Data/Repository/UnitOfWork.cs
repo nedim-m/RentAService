@@ -17,6 +17,7 @@ namespace RentAServ.DataAccess.Data.Repository
             Service = new ServiceRepository(_db);
             OrderDetails = new OrderDetailsRepository(_db);
             OrderHeader = new OrderHeaderRepository(_db);
+            ApplicationUser = new ApplicationUserRepository(_db);
             
         }
         public ICategoryRepository Category { get; private set; }
@@ -28,6 +29,8 @@ namespace RentAServ.DataAccess.Data.Repository
         public IOrderDetailsRepository OrderDetails { get; private set; }
 
         public IOrderHeaderRepository OrderHeader { get; private set; }
+
+        public IApplicationUserRepository ApplicationUser { get; private set; }
 
 
         public void Dispose()
