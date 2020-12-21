@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RentAServ.DataAccess.Data.Repository.IRepository;
 using RentAServ.Models;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace RentAServ.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     public class FrequencyController : Controller
     {

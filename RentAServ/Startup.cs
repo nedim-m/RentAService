@@ -57,6 +57,20 @@ namespace RentAServ
             services.AddSingleton<IEmailSender, EmailSender>();
             services.AddControllersWithViews().AddNewtonsoftJson().AddRazorRuntimeCompilation();
             services.AddRazorPages();
+
+            services.ConfigureApplicationCookie(options =>
+
+            {
+
+                options.LoginPath = $"/Identity/Account/Login";
+
+                options.LogoutPath = $"/Identity/Account/Logout";
+
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+
+            });
+
+
         }
 
 
