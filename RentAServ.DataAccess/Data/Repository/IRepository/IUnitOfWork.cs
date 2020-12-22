@@ -12,6 +12,8 @@ namespace RentAServ.DataAccess.Data.Repository.IRepository
         IOrderHeaderRepository OrderHeader { get; }
         IOrderDetailsRepository OrderDetails { get; }
         IApplicationUserRepository ApplicationUser { get; }
+        ISP_Call SP_Call { get; }
+
         void Save();
     }
 }

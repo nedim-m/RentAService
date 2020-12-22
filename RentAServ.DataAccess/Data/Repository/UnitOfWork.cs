@@ -18,7 +18,7 @@ namespace RentAServ.DataAccess.Data.Repository
             OrderDetails = new OrderDetailsRepository(_db);
             OrderHeader = new OrderHeaderRepository(_db);
             ApplicationUser = new ApplicationUserRepository(_db);
-            
+            SP_Call = new SP_Call(_db);
         }
         public ICategoryRepository Category { get; private set; }
 
@@ -32,6 +32,7 @@ namespace RentAServ.DataAccess.Data.Repository
 
         public IApplicationUserRepository ApplicationUser { get; private set; }
 
+        public ISP_Call SP_Call { get; }
 
         public void Dispose()
         {

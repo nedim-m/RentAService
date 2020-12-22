@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RentAServ.DataAccess.Data.Repository.IRepository;
 using RentAServ.Models;
+using RentAServ.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,7 +72,9 @@ namespace RentAServ.Areas.Admin.Controllers
         public IActionResult GetAll()
         {
 
-            return Json(new { data = _unitOfWork.Category.GetAll() });
+            //return Json(new { data = _unitOfWork.Category.GetAll() });
+
+            return Json(new { data = _unitOfWork.SP_Call.ReturnList<Category>(SD.usp_GetAllCategory,null) });//with stored procedure
         }
 
         [HttpDelete]
